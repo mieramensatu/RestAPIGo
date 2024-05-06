@@ -1,0 +1,125 @@
+openapi: 3.0.0
+info:
+  title: Restfull API
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8085
+paths:
+  /login:
+    post:
+      tags:
+        - default
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /books:
+    post:
+      tags:
+        - default
+      summary: Create books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name_books:
+                  type: string
+                kategori_books:
+                  type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: Read API
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - default
+      summary: update books
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_books:
+                  type: string
+                name_books:
+                  type: string
+                kategori_books:
+                  type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /books?id={id}:
+    delete:
+      tags:
+        - default
+      summary: Delete books
+      parameters:
+        - in: query
+          name: id_books
+          schema:
+            type: string
+          required: true
+          description: The ID of the book to delete
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - default
+      summary: Read API
+      parameters:
+        - in: query
+          name: id_books
+          schema:
+            type: string
+          required: true
+          description: Successful response
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
